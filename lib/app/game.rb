@@ -11,16 +11,17 @@ class Game
   end
   #Execution d'un tour de jeu
   def round(player)
-    puts "#{player=="0" ? @player.P1 : @player.P2}, dans quelle case souhaitez-vous vous placer?"
-    puts "1. A1"
-    puts "2. A2"
-    puts "3. A3"
-    puts "4. B1"
-    puts "5. B2"
-    puts "6. B3"
-    puts "7. B4"
-    puts "8. B5"
-    puts "9. B6"
+    @player_round = player
+    puts "#{@player_round == "0".colorize(:blue) ? @player.P1.colorize(:blue) : @player.P2.colorize(:red)}, dans quelle case souhaitez-vous vous placer? "
+    puts "1. A1 "
+    puts "2. A2 "
+    puts "3. A3 "
+    puts "4. B1 "
+    puts "5. B2 "
+    puts "6. B3 "
+    puts "7. B4 "
+    puts "8. B5 "
+    puts "9. B6 "
     print ">"
     choix = gets.chomp.to_i
     if @boardcase_full.include?(choix)
@@ -66,33 +67,33 @@ class Game
   #Les 8 conditions de victoire
   def win_condition_private(board)
     if @board.A1.params == @board.A2.params && @board.A3.params == @board.A2.params && @board.A1.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
     if @board.B1.params == @board.B2.params && @board.B3.params == @board.B2.params && @board.B1.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
     if @board.C1.params == @board.C2.params && @board.C3.params == @board.C2.params && @board.C1.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
     if @board.A1.params == @board.B1.params && @board.A1.params == @board.C1.params && @board.A1.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
     if @board.A2.params == @board.B2.params && @board.A2.params == @board.C2.params && @board.A2.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
     if @board.A3.params == @board.B3.params && @board.A3.params == @board.C3.params && @board.A3.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
     if @board.A1.params == @board.B2.params && @board.B2.params == @board.C3.params && @board.A1.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
     if @board.A3.params == @board.B2.params && @board.B2.params == @board.C1.params && @board.A3.params != " "
-      end_game_private(player)
+      end_game_private(@player_round)
     end
   end
   #La fin de partie en cas de victoire
-  def end_game_private(player)
-    puts "Félicitations #{player=="0" ? @player.P1 : @player.P2}, vous avez gagné."
+  def end_game_private(player_round)
+    puts "Félicitations #{player_round=="0".colorize(:blue) ? @player.P1.colorize(:blue) : @player.P2.colorize(:red)}, vous avez gagné."
     puts "Souhaitez-vous refaire une partie (O/N)?"
     print ">"
     prochaine_partie = gets.chomp.upcase
